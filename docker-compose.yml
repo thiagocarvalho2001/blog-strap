@@ -1,0 +1,17 @@
+version: "3.3" # Use the latest supported version
+
+services:
+  blog_strapi_api:
+    container_name: blog_strapi_api # Consistent naming for clarity
+    hostname: blog_strapi_api # Use hostname for network resolution if needed
+    image: postgres:15-alpine # Use a specific version for consistency
+    restart: always # Ensure automatic restarts
+    environment:
+      POSTGRES_PASSWORD: senha # Replace with a strong password
+      POSTGRES_USER: strapi # Add a user for Strapi to connect
+      POSTGRES_DB: blog-strapi
+      PGDATA: /var/lib/postgresql/data/pgdata # Unnecessary for Docker, but harmless
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data # Use relative path for portability
+    ports:
+      - "5432:5432" # Map the standard PostgreSQL port
